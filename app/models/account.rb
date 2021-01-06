@@ -5,15 +5,11 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
-
+  mount_uploader :image, ProfilePictureUploader
 
   has_many :properties
 
   def full_name
     "#{first_name} #{last_name}"
-  end
-
-  def company
-    'test company'
   end
 end
