@@ -7,6 +7,11 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= asset_url "favicon_io/apple-touch-icon.png" %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= asset_url "favicon_io/favicon-32x32.png" %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= asset_url "favicon_io/favicon-16x16.png" %>">
+    <link rel="manifest" href="<%= asset_url "favicon_io/site.webmanifest" %>">
   </head>
 
   <body id="<%= controller.controller_name %>" class="<%= controller.action_name %> <%= "show-sidebar" if @show_sidebar.present? %>">
