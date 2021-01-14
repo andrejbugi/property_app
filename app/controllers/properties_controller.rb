@@ -66,19 +66,38 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def email_agent
+    # trigger email send
+    agent_id = params[:agent_id]
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    email = params[:email]
+    message = params[:message]
+
+    ContactMailer.email_to_agent(agent_id, first_name, last_name, email, message).deliver_now
+
+    # response to script
+
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def property_params
-      params.require(:property).permit(:name, :address, :price, :rooms, :bathrooms,
-                                       :parking_spaces, :details, :photo, :photo_cache)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property
+    @property = Property.find(params[:id])
+  end
 
-    def set_sidebar
-      @show_sidebar = true
-    end
+  # Only allow a list of trusted parameters through.
+  def property_params
+    params.require(:property).permit(:name, :address, :price, :rooms, :bathrooms,
+                                      :parking_spaces, :details, :for_sale,
+                                      :available_date, :photo, :photo_cache)
+  end
+
+  def set_sidebar
+    @show_sidebar = true
+  end
 end
