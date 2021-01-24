@@ -1,7 +1,8 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_account!, only: %i[new create destroy]
+  before_action :set_property, only: %i[show edit update destroy]
+  before_action :authenticate_account!, except: %i[show email_agent]
   before_action :set_sidebar, except: [:show]
+  before_action :ime?, only: %i[edit update destroy]
 
   # GET /properties
   # GET /properties.json
@@ -22,8 +23,7 @@ class PropertiesController < ApplicationController
   end
 
   # GET /properties/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /properties
   # POST /properties.json
@@ -100,5 +100,14 @@ class PropertiesController < ApplicationController
 
   def set_sidebar
     @show_sidebar = true
+  end
+
+  def ime?
+    unless equal_with_current_account?(@property)
+      respond_to do |format|
+        format.html { redirect_to properties_path, flash: { danger: 'You do not have access.' } }
+        format.json { render json: @property.errors, status: :unprocessable_entity }
+      end
+    end
   end
 end

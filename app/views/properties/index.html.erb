@@ -20,9 +20,14 @@
         <td><%= property.price %></td>
         <td><%= property.rooms %></td>
         <td><%= property.bathrooms %></td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', property, class: 'btn btn-dark' %></td>
+        <% if equal_with_current_account?(property) %>
+          <td><%= link_to 'Edit', edit_property_path(property), class: 'btn btn-secondary' %></td>
+          <td><%= link_to 'Delete', property, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td><a class="btn btn-secondary disabled">Edit</a></td>
+          <td><a class="btn btn-danger disabled">Delete</a></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Property', new_property_path, class: "btn btn-success" %>
+<%= link_to 'New Property', new_property_path, class: "btn btn-success mb-4" %>

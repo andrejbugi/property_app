@@ -1,3 +1,23 @@
-<footer class="container">
-  <p>&copy; Property 2020</p>
+<footer class="sticky-bottom bg-light mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 text-center mt-2">
+        <p class="h5 m-0 p-0">Create your account</p><br>
+        <p class="mb-0"><%= link_to 'Log In', new_account_session_path, class: "text-muted" %></p>
+        <p class="mb-0"><%= link_to 'Sign Up', new_account_registration_path, class: "text-muted" %></p>
+      </div>
+      <div class="col-md-4 text-center mt-2">
+        <p class="h5 m-0 p-0">All properties</p><br>
+      </div>
+      <div class="col-md-4 text-center mt-2">
+        <p class="h5 m-0 p-0">Our blog posts</p><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center pt-3 pb-1">
+        <h4><strong>Property App</strong></h4>
+        <h5><small><em>&copy; All rights reserved 2021</em></small></h5>
+      </div>
+    </div>
+  </div>
 </footer>

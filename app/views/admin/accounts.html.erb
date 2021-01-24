@@ -1,18 +1,30 @@
 <h2>Accounts </h2>
 
-<% @accounts.each do |account| %>
-<div class="row">
-  <div class="col-sm-3">
-    <%= account.full_name %>
-  </div>
-  <div class="col-sm-3">
-    <%= account.email %>
-  </div>
-  <div class="col-sm-3">
-    <%= account.created_at.strftime("%d %m %Y") %>
-  </div>
-  <div class="col-sm-3">
-    <%= link_to "View Profile", profile_path(account.id), class: "btn btn-primary" %>
-  </div>
-</div>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Joined</th>
+      <th>Company</th>
+      <th>Telephone</th>
+      <th>Properties</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td style="width:23rem"><%= account.full_name.truncate(30) %></td>
+        <td style="width:15rem"><%= account.email.truncate(25) %></td>
+        <td style="width:10rem"><%= account.created_at.strftime("%d %m %Y") %></td>
+        <td style="width:23rem"><%= account.company.truncate(30) %></td>
+        <td style="width:15rem"><%= account.telephone.truncate(25) %></td>
+        <td style="width:10rem">active: <%= account.properties.currently_listed %></td>
+        <td><%= link_to 'Show', profile_path(account.id), class: 'btn btn-dark' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table><br>
+

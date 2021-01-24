@@ -8,4 +8,8 @@ class Property < ApplicationRecord
   scope :sold, -> { where(for_sale: true, status: "sold") }
   scope :for_rent, -> { where(for_sale: false, status: "available") }
   scope :leased, -> { where(for_sale: false, status: "leased") }
+
+  def self.currently_listed
+    for_sale.count + for_rent.count
+  end
 end

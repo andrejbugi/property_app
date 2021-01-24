@@ -2,13 +2,14 @@
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-4"><%= @post.title %></h1>
+      <p class="h4 text-muted pl-2 mt-1 mb-3"><em>By <%=  %></em></p>
       <p class="text-muted pl-2">Posted <%= time_ago_in_words @post.created_at %> ago</p>
     </div>
   </div>
 </main>
 
 <div class="container">
-  <%= image_tag @post.image.thumb.url, class: "float-right mb-4 ml-4" if @post.image.present? %>
+  <%= image_tag @post.image.thumb.url, id: "post-image", class: "float-right mb-4 ml-4" if @post.image.present? %>
 
   <%= simple_format @post.body %>
 
