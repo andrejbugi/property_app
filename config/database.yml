@@ -80,9 +80,6 @@ test:
 #
 production:
   <<: *default
-  host: localhost
   database: property_app_production
-  username: andrejkostov
-  password: '13111996'
-  timeout: 5000
-  port: 5432
+  username: property_app
+  password: <%= ENV['PROPERTY_APP_DATABASE_PASSWORD'] %>
